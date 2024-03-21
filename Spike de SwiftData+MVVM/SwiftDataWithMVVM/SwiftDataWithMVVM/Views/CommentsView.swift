@@ -39,7 +39,7 @@ struct CommentsView: View {
         }
         .onReceive(commentsViewModel.didSavePublisher, perform: { _ in
             print("DIDSAVE")
-            commentsViewModel.fetch()
+            commentsViewModel.fetch(sortBy: [SortDescriptor(\.date)])
         })
     }
 }

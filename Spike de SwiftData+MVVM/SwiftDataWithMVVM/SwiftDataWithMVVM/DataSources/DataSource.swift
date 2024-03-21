@@ -6,7 +6,7 @@ protocol DataSource {
     var modelContext: ModelContext {get}
     
     func append<T>(element: T) where T: PersistentModel
-    func fetch<T>() -> [T] where T: PersistentModel
+    func fetch<T>(sortBy sortDescriptors: [SortDescriptor<T>]) -> [T] where T: PersistentModel
     func remove<T>(_ element: T) where T: PersistentModel
 }
 
@@ -15,9 +15,9 @@ extension DataSource {
         modelContext.insert(element)
     }
 
-    func fetch<T>() -> [T] where T: PersistentModel {
+    func fetch<T>(sortBy sortDescriptors: [SortDescriptor<T>] = []) -> [T] where T: PersistentModel {
         do {
-            return try modelContext.fetch(FetchDescriptor<T>())
+            return try modelContext.fetch(FetchDescriptor<T>(sortBy: sortDescriptors))
         } catch {
             fatalError(error.localizedDescription)
         }
