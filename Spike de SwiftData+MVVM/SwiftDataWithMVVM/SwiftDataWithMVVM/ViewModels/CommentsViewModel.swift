@@ -20,6 +20,10 @@ class CommentsViewModel {
     func fetch(sortBy sortDescriptors: [SortDescriptor<Comment>] = []) {
         comments = dataSource.fetch(sortBy: sortDescriptors)
     }
+    
+    func fetch(predicate: Predicate<Comment>, sortBy sortDescriptors: [SortDescriptor<Comment>] = []) {
+        comments = dataSource.fetch(predicate: predicate, sortBy: sortDescriptors)
+    }
 
     func remove(_ comment: Comment) {
         dataSource.remove(comment)
