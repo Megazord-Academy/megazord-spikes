@@ -1,7 +1,7 @@
 import Foundation
 import SwiftData
 
-final class CommentDataSource: DataSource {
+final class CommentDataSource: DataSource {    
     let modelContainer: ModelContainer
     let modelContext: ModelContext
 
